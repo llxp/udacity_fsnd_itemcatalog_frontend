@@ -1,0 +1,9 @@
+<nav class="nav">
+  <ul class="nav navbar-nav">
+    <div *ngIf="categories.categories">
+      <div *ngFor="let item of categories.categories">
+        <li><a href="{{item.path}}">{{item.category}}</a></li>
+      </div>
+    </div>
+  </ul>
+</nav>
