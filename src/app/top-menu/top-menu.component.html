@@ -6,7 +6,11 @@
     </div>
     <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item"><a class="nav-link" routerLink="login">Login</a></li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="user/login">
+                <div *ngIf="!loginService.loggedIn">Login</div>
+                <div *ngIf="loginService.loggedIn"><img src="{{ (loginService.user | async)?.picture }}" width="32" height="32"/></div> </a>
+            </li>
         </ul>
     </div>
 </nav>

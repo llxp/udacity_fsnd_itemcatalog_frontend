@@ -13,6 +13,22 @@ import { ItemPerCategoryComponent } from './item-per-category/item-per-category.
 import { HomeComponent } from './home/home.component';
 import {HttpClientModule} from "@angular/common/http";
 
+import {
+    SocialLoginModule,
+    AuthServiceConfig,
+    GoogleLoginProvider,
+} from "angularx-social-login";
+import {SafePipe} from "./SafePipe";
+import {CookieService} from "ngx-cookie-service";
+
+export function getAuthServiceConfigs() {
+  let config = new AuthServiceConfig([{
+          id: GoogleLoginProvider.PROVIDER_ID,
+          provider: new GoogleLoginProvider("1011824361501-id0m8g61iu283r7mbd086t7c0d0glmdc.apps.googleusercontent.com")
+        }]);
+  return config;
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,16 +36,24 @@ import {HttpClientModule} from "@angular/common/http";
     LoginComponent,
     CategoriesMenuComponent,
     ItemPerCategoryComponent,
-    HomeComponent
+    HomeComponent,
+    SafePipe
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(routeConfig),
     NgbModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    SocialLoginModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: AuthServiceConfig,
+      useFactory: getAuthServiceConfigs
+    },
+    CookieService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

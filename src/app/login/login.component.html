@@ -1,3 +1,19 @@
-<p>
-  login works!
-</p>
+<!--<div id="googleBtn">Google</div>-->
+<!--<h1>
+     Sign in
+</h1>
+-->
+<div *ngIf="!(loginService.loggedIn)">
+  <button (click)="signInWithGoogle()">Signin in with Google</button>
+</div>
+<div *ngIf="(loginService.loggedIn)">
+  <img src="{{ (loginService.user | async)?.picture }}">
+  <div>
+    <h4>{{ (loginService.user | async)?.username }}</h4>
+    <p>{{ (loginService.user | async)?.email }}</p>
+  </div>
+</div>
+
+<div *ngIf="(loginService.loggedIn)">
+  <button (click)="signOut()">Signin Out from Google</button>
+</div>

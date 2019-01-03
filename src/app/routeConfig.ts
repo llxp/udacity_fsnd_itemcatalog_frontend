@@ -1,24 +1,39 @@
 import {Routes} from "@angular/router";
 import {HomeComponent} from "./home/home.component";
 import {LoginComponent} from "./login/login.component";
+import {CategoriesMenuComponent} from "./categories-menu/categories-menu.component";
+import {ItemPerCategoryComponent} from "./item-per-category/item-per-category.component";
 
 export const routeConfig:Routes = [
-    {
-        path: 'home',
-        component: HomeComponent
-    },
-    {
+  {
+    path: 'home',
+    component: HomeComponent
+  },
+  {
+    path: 'user',
+    children: [
+      {
         path: 'login',
         component: LoginComponent
-    },
-    {
-        path: '',
-        redirectTo: '/home',
-        pathMatch: 'full'
-    },
-    {
-        path: '**',
-        redirectTo: '/home',
-        pathMatch: 'full'
-    }
+      },
+      {
+        path: 'gconnect',
+        component: LoginComponent
+      },
+    ]
+  },
+  {
+    path: 'catalog/categories/:id',
+    component: HomeComponent
+  },
+  {
+    path: '',
+    redirectTo: '/home',
+    pathMatch: 'full'
+  },
+  {
+    path: '**',
+    redirectTo: '/home',
+    pathMatch: 'full'
+  }
 ];

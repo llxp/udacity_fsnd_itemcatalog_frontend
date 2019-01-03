@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {CategoriesService} from "../categories.service";
+import {CategoriesService} from "../services/categories.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-categories-menu',
@@ -8,10 +9,13 @@ import {CategoriesService} from "../categories.service";
 })
 export class CategoriesMenuComponent implements OnInit {
 
-  constructor(private categories : CategoriesService) { }
+  constructor(private categoriesService : CategoriesService,
+              private route: ActivatedRoute,) { }
 
   ngOnInit() {
-    this.categories.getCategories();
+    this.categoriesService.getCategories();
+    const id = this.route.snapshot.paramMap.get('id');
+    console.log("ID: "+ id);
   }
 
 }

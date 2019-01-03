@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Category} from "./Category";
+import {Category} from "../Category";
 import { Observable, Subject } from 'rxjs';
 import {HttpClient} from "@angular/common/http";
 import {catchError, tap} from "rxjs/operators";
@@ -16,7 +16,7 @@ export class CategoriesService {
               private logging: LoggingService) { }
 
   private getCategory() : Observable<Category[]> {
-    return this.http.get<Category[]>("http://localhost:5000/categories")
+    return this.http.get<Category[]>("http://localhost:5000/api/categories")
       .pipe(
       tap(heroes => this.logging.log('fetched categories')),
       catchError(this.logging.handleError<Category[]>('getCategory'))
