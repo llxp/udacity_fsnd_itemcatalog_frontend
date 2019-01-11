@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {LoginService} from "../services/login.service";
+import {LoginService} from '../services/login.service';
 
 @Component({
   selector: 'app-top-menu',
@@ -8,7 +8,7 @@ import {LoginService} from "../services/login.service";
 })
 export class TopMenuComponent implements OnInit {
 
-  constructor(private loginService : LoginService) { }
+  constructor(private loginService: LoginService) { }
 
   ngOnInit() {
   }

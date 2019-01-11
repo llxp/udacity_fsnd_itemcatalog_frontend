@@ -1,4 +1,5 @@
 export class Category {
-  public category : string;
-  public path : string;
+  public id: Number;
+  public category: string;
+  public path: string;
 }

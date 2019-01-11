@@ -1,3 +1,28 @@
-<p>
-  item-per-category works! {{id}}
-</p>
+<div *ngIf="categoriesService.selectedCategory | async as selectedCategory">
+  <h2>{{selectedCategory.category}}</h2>
+  <div *ngIf="itemService.items | async as items">
+    <div *ngIf="items.length > 1">
+      <h5>{{items.length}} items in this category</h5>
+    </div>
+    <div *ngIf="items.length == 1">
+      <h5>1 item in this category</h5>
+    </div>
+    <div *ngIf="items.length == 0">
+      <h5>0 items in this category</h5>
+    </div>
+  </div>
+  <div *ngIf="!itemService.items || itemService.items.length <= 0">
+    <h5>0 items in this category</h5>
+  </div>
+</div>
+<nav class="nav">
+  <ul class="nav navbar-nav">
+    <div *ngIf="itemService.items | async as items">
+      <div *ngFor="let item of items">
+      <!--[routerLink]="['/catalog/item/', item.id]"-->
+      <!--(click)='itemService.selectItem(item.id)'-->
+        <li><a [routerLink]="['/catalog/category', item.category, 'item', item.id]" >{{item.title}}</a></li>
+      </div>
+    </div>
+  </ul>
+</nav>

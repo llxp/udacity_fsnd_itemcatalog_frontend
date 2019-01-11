@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {CategoriesService} from "../services/categories.service";
-import {ActivatedRoute} from "@angular/router";
+import {CategoriesService} from '../services/categories.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-categories-menu',
@@ -9,13 +9,21 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class CategoriesMenuComponent implements OnInit {
 
-  constructor(private categoriesService : CategoriesService,
-              private route: ActivatedRoute,) { }
+  constructor(private categoriesService: CategoriesService,
+              private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.categoriesService.getCategories();
-    const id = this.route.snapshot.paramMap.get('id');
-    console.log("ID: "+ id);
+    this.route.url.subscribe(url => {
+      console.log('url changed...');
+      console.log(url);
+      if (url.length >= 1 && url[0].path === 'category') {
+        console.log(+url[2].path);
+        const id = this.route.snapshot.paramMap.get('category_id');
+        console.log('ID: ' + id);
+        this.categoriesService.selectCategory(+id);
+      }
+    });
   }
 
 }

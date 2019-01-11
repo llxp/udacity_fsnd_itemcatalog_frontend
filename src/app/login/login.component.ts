@@ -3,7 +3,7 @@ import {DOCUMENT } from '@angular/common';
 
 import {LoginService} from "../services/login.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {CookieService} from "../services/cookie.service";
+import {CookieService} from 'ngx-cookie-service';
 import {User} from "../User";
 
 @Component({
@@ -30,16 +30,17 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.queryParams.subscribe(params => {
-        if('code' in params && 'state' in params) {
+        if ('code' in params && 'state' in params) {
           const code = params['code'];
           const stateToken = params['state'];
-          //this.cookieService.setCookie('session', session, 365);
+          // this.cookieService.setCookie('session', session, 365);
           console.log(params);
           console.log(code);
           this.loginService.sendCode(code, stateToken);
           this.router.navigate(['/home']);
+        } else {
+          this.loginService.getUserInfo();
         }
-        this.loginService.getUserInfo();
       });
   }
 

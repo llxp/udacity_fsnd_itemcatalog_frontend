@@ -1,13 +1,13 @@
 <nav class="navbar navbar-expand navbar-dark px-4 flex-column flex-md-row bg-dark" routerLinkActive="active">
     <div class="container navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item"><a class="navbar-brand" routerLink="home">Home</a></li>
+            <li class="nav-item"><a class="navbar-brand" [routerLink]="['home']">Home</a></li>
         </ul>
     </div>
     <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link" routerLink="user/login">
+              <a class="nav-link" [routerLink]="['user/login']">
                 <div *ngIf="!loginService.loggedIn">Login</div>
                 <div *ngIf="loginService.loggedIn"><img src="{{ (loginService.user | async)?.picture }}" width="32" height="32"/></div> </a>
             </li>

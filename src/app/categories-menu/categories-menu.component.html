@@ -1,8 +1,8 @@
 <nav class="nav">
-  <ul class="nav navbar-nav">
-    <div *ngIf="categoriesService.categories">
-      <div *ngFor="let item of categoriesService.categories">
-        <li><a href="/catalog/categories/{{item.id}}">{{item.category}}</a></li>
+  <ul class="nav navbar-nav nav-pills">
+    <div *ngIf="categoriesService.categories | async as categories">
+      <div *ngFor="let item of categoriesService.categories | async as categories">
+        <li><a [routerLink]="['/catalog/category/', item.id]" [routerLinkActive]="['active', 'nav-link', 'show']" data-toggle="pill" role="tab" aria-controls="v-pills-home" aria-selected="true">{{item.category}}</a></li>
       </div>
     </div>
   </ul>

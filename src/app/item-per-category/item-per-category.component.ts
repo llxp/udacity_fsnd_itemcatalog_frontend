@@ -1,5 +1,7 @@
+import { CategoriesService } from './../services/categories.service';
+import { ItemService } from './../services/item.service';
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-item-per-category',
@@ -8,13 +10,18 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class ItemPerCategoryComponent implements OnInit {
 
-  private id : string;
-  constructor(private route : ActivatedRoute) { }
+  private id: Number;
+
+  constructor(
+    private route: ActivatedRoute,
+    private itemService: ItemService,
+    private categoriesService: CategoriesService) { }
 
   ngOnInit() {
-    const id = this.route.snapshot.paramMap.get('id');
-    console.log("Item ID: "+ id);
-    this.id = id;
+    this.categoriesService.selectedCategory.subscribe(selectedCategory => {
+      console.log('category changed...');
+      this.itemService.getItems(selectedCategory.id);
+    });
   }
 
 }
