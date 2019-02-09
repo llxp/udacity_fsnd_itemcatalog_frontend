@@ -1,10 +1,10 @@
 import {NgZone, Component, Inject, OnInit} from '@angular/core';
 import {DOCUMENT } from '@angular/common';
 
-import {LoginService} from "../services/login.service";
-import {ActivatedRoute, Router} from "@angular/router";
+import {LoginService} from '../services/login.service';
+import {ActivatedRoute, Router} from '@angular/router';
 import {CookieService} from 'ngx-cookie-service';
-import {User} from "../User";
+import {User} from '../User';
 
 @Component({
   selector: 'app-login',
@@ -13,11 +13,11 @@ import {User} from "../User";
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private loginService : LoginService,
+  constructor(private loginService: LoginService,
               @Inject(DOCUMENT) private document: any,
-              private activatedRoute : ActivatedRoute,
-              private router : Router,
-              private cookieService : CookieService) {
+              private activatedRoute: ActivatedRoute,
+              private router: Router,
+              private cookieService: CookieService) {
   }
 
   private signInWithGoogle(): void {

@@ -9,21 +9,28 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class CategoriesMenuComponent implements OnInit {
 
+  private selectedCategory: Number = 1;
+
   constructor(private categoriesService: CategoriesService,
               private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.categoriesService.getCategories();
-    this.route.url.subscribe(url => {
+    /*this.route.url.subscribe(url => {
       console.log('url changed...');
       console.log(url);
       if (url.length >= 1 && url[0].path === 'category') {
-        console.log(+url[2].path);
+        console.log(+url[1].path);
         const id = this.route.snapshot.paramMap.get('category_id');
         console.log('ID: ' + id);
         this.categoriesService.selectCategory(+id);
       }
-    });
+    });*/
+  }
+
+  public selectCategory(id: Number) {
+    console.log('selectCategory' + id);
+    this.selectedCategory = id;
   }
 
 }

@@ -3,7 +3,7 @@
      Sign in
 </h1>
 -->
-<div *ngIf="!(loginService.loggedIn)">
+<!--<div *ngIf="!(loginService.loggedIn)">
   <button (click)="signInWithGoogle()">Signin in with Google</button>
 </div>
 <div *ngIf="(loginService.loggedIn)">
@@ -16,4 +16,24 @@
 
 <div *ngIf="(loginService.loggedIn)">
   <button (click)="signOut()">Signin Out from Google</button>
+</div>-->
+
+<div class="vertical-center">
+    <div class="jumbotron container">
+        <div *ngIf="error">
+            <h3>{{error}}</h3>
+        </div>
+        <div *ngIf="!(loginService.loggedIn) then loginBlock; else loggedInBlock"></div>
+        <ng-template #loginBlock>
+            <button (click)="signInWithGoogle()">>Login using Google</button>
+        </ng-template>
+        <ng-template #loggedInBlock>
+          <img src="{{ (loginService.user | async)?.picture }}" width="32" height="32">
+          <div>
+              <h4>{{ (loginService.user | async)?.username }}</h4>
+              <p>{{ (loginService.user | async)?.email }}</p>
+          </div>
+          <button (click)="signOut()">Logout</button>
+        </ng-template>
+    </div>
 </div>

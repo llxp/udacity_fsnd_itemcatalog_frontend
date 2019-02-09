@@ -1,4 +1,4 @@
-<nav class="nav">
+<!--<nav class="nav">
   <ul class="nav navbar-nav nav-pills">
     <div *ngIf="categoriesService.categories | async as categories">
       <div *ngFor="let item of categoriesService.categories | async as categories">
@@ -7,3 +7,21 @@
     </div>
   </ul>
 </nav>
+-->
+<div *ngIf="categoriesService.categories | async as categories">
+  <div *ngFor="let item of categories">
+    <li>
+      <a class="btn nav-link"
+      (click)="selectCategory(item.id)"
+      data-toggle="pill"
+      role="tab"
+      [attr.aria-selected]="selectedCategory === item.id"
+      aria-controls="v-pills-home"
+      [ngClass]="{
+        'show': selectedCategory === item.id,
+        'active': selectedCategory === item.id}">
+        {{item.category}}
+      </a>
+    </li>
+  </div>
+</div>

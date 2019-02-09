@@ -29,12 +29,10 @@ export const routeConfig: Routes = [
       {
         path: 'category/:category_id',
         component: HomeComponent,
-        children: [
-          {
-            path: 'item/:item_id',
-            component: HomeComponent
-          },
-        ]
+      },
+      {
+        path: 'item/:item_id',
+        component: HomeComponent
       }
     ]
   },

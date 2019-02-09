@@ -37,10 +37,10 @@ export class LoginService {
               @Inject(DOCUMENT) private document: any,
               private logging: LoggingService) {
     if (localStorage.getItem('session_token')) {
-      console.log("got user info...");
+      console.log('got user info');
       this.getUserInfo();
     } else {
-      console.log("cookie not present...");
+      console.log('cookie not present');
     }
   }
 
@@ -105,10 +105,10 @@ export class LoginService {
   }
 
   public getUserInfo(): void {
-    if (localStorage.getItem('session_token').length > 0) {
+    const sessionToken: string = localStorage.getItem('session_token');
+    if (sessionToken && sessionToken.length > 0) {
       console.log('getUserInfo()');
       console.log('the cookie was set: ' + localStorage.getItem('session_token'));
-      const sessionToken: string = localStorage.getItem('session_token');
       this.httpClient.get<User>(userInfoUrl + '?session_token=' + sessionToken)
       .subscribe(data => {
         this.loggedIn = true;

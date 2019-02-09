@@ -30,7 +30,8 @@ export class CookieService {
         this.setCookie(name, '', -1);
     }
 
-    public setCookie(name: string, value: string, expireDays: number, path: string = '') : void {
+    public setCookie(name: string, value: string, expireDays: number, path: string = ''): void {
+      console.log('set cookie in cookie service');
         const d: Date = new Date();
         d.setTime(d.getTime() + expireDays * 24 * 60 * 60 * 1000);
         const expires: string = `expires=${d.toUTCString()}`;

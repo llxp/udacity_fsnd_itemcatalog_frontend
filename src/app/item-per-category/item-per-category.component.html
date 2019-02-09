@@ -1,4 +1,4 @@
-<div *ngIf="categoriesService.selectedCategory | async as selectedCategory">
+<!--<div *ngIf="categoriesService.selectedCategory | async as selectedCategory">
   <h2>{{selectedCategory.category}}</h2>
   <div *ngIf="itemService.items | async as items">
     <div *ngIf="items.length > 1">
@@ -19,10 +19,11 @@
   <ul class="nav navbar-nav">
     <div *ngIf="itemService.items | async as items">
       <div *ngFor="let item of items">
-      <!--[routerLink]="['/catalog/item/', item.id]"-->
+      --><!--[routerLink]="['/catalog/item/', item.id]"-->
       <!--(click)='itemService.selectItem(item.id)'-->
-        <li><a [routerLink]="['/catalog/category', item.category, 'item', item.id]" >{{item.title}}</a></li>
+        <!--<li><a [routerLink]="['/catalog/item/', item.id]" >{{item.title}}</a></li>
       </div>
     </div>
   </ul>
 </nav>
+-->
